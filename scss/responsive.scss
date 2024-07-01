@@ -1,0 +1,40 @@
+// Mixin
+$xs: 375px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1680px;
+
+// Responsive
+@mixin min-sm {
+    @media screen and (min-width: $sm) {
+        @content;
+    }
+}
+
+@mixin min-md {
+    @media screen and (min-width: $md) {
+        @content;
+    }
+}
+
+@mixin min-lg {
+    @media screen and (min-width: $lg) {
+        @content;
+    }
+}
+
+@mixin min-xl {
+    @media screen and (min-width: $xl) {
+        @content;
+    }
+}
+
+@mixin min-xxl {
+    @media screen and (min-width: $xxl) {
+        @content;
+    }
+}
+
+

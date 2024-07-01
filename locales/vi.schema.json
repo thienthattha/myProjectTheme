@@ -1,0 +1,41 @@
+{
+  "setting_schema": {
+    "logo": {
+      "name": "Logo",
+      "settings": {
+        "logo_image": {
+          "label": "Logo"
+        },
+        "logo_width": {
+          "label": "Chiều rộng logo trên màn hình nền",
+          "info": "Chiều rộng logo được tự động tối ưu hóa cho thiết bị di động."
+        }
+      }
+    },
+    "typography": {
+      "name": "Kiểu chữ",
+      "settings": {
+        "type_header_font": {
+          "label": "Phông chữ",
+          "info": "Việc chọn phông chữ khác có thể ảnh hưởng đến tốc độ của cửa hàng. [Tìm hiểu thêm về phông chữ hệ thống.](https:\/\/help.shopify.com\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)"
+        },
+        "header__1": {
+          "content": "Tiêu đề"
+        },
+        "header__2": {
+          "content": "Nội dung"
+        },
+        "type_body_font": {
+          "label": "Phông chữ",
+          "info": "Việc chọn phông chữ khác có thể ảnh hưởng đến tốc độ của cửa hàng. [Tìm hiểu thêm về phông chữ hệ thống.](https:\/\/help.shopify.com\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)"
+        },
+        "heading_scale": {
+          "label": "Tỷ lệ cỡ phông chữ"
+        },
+        "body_scale": {
+          "label": "Tỷ lệ cỡ phông chữ"
+        }
+      }
+    }
+  }
+}

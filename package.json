@@ -1,0 +1,15 @@
+{
+  "name": "democreatethemeshopifycli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass scss/main.scss assets/main.css --watch --output-style nested"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "node-sass": "^9.0.0"
+  }
+}

@@ -1,0 +1,93 @@
+<section></section>
+
+{%  schema  %} 
+    {
+        "name": "Announcement Bar",
+        "class": "announcement-bar",
+        "max_blocks": 3,
+        "settings": [
+            {
+                "type": "color_scheme",
+                "id": "color_scheme",
+                "label": "Color Schema",
+                "default": "scheme-1"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_separator_line",
+                "label": "Show separator line",
+                "default": true
+            },
+            {
+                "type": "header",
+                "content": "Social media icons"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_social",
+                "label": "Show icons on desktop",
+                "default": false
+            },
+            {
+                "type": "header",
+                "content": "Announcements"
+            },
+            {
+                "type": "checkbox",
+                "id": "auto_rotate",
+                "label": "Auto-rotate announcements",
+                "default": false
+            },
+            {
+                "type": "range",
+                "id": "change_slides_speed",
+                "min": 2,
+                "max": 10,
+                "step": 1,
+                "unit": "s",
+                "label": "Change every",
+                "default": 6
+            },
+            {
+                "type": "header",
+                "content": "Country/region selector"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_country",
+                "label": "Enable country/region selector",
+                "default": false
+            },
+            {
+                "type": "header",
+                "content": "Language selector"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_languade",
+                "label": "Enable language selector",
+                "default": false
+            }
+        ],
+        "blocks": [
+            {
+                "type": "announcement",
+                "name": "Announcement",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "announcement_text",
+                        "default": "Input enter ...",
+                        "label": "Text"
+                    },
+                    {
+                        "type": "url",
+                        "id": "announcement_link",
+                        "label": "Link"
+                    }
+                ]
+
+            }
+        ]
+    } 
+{% endschema %}

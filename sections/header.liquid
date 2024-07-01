@@ -1,0 +1,128 @@
+<header class="header">
+    <div class="container">
+        <nav class="header__wrapper">
+            <div class="header-drawer">
+                <div class="header-drawer__icon">
+                    <button class="header-drawer__icon--close button-icon display-none">
+                        {% render 'icon-close' %}
+                    </button>
+                    <button class="header-drawer__icon--humburger button-icon">
+                        {% render 'icon-hamburger' %}
+                    </button>
+                </div>
+                <ul class="header-drawer__list-menu">
+                    {% for link in section.settings.menu.links %}
+                        {% if link.url != blank %}
+                            <li class="item">
+                        <a href="{{ link.url | escape }}" class="item__link {% if link.current %} item__link--active {% endif %}">{{ link.title | escape }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="header-heading">
+                <a href="{{ routes.root_url }}" class="header-heading__link">
+                    {% if settings.logo != blank %}
+                        {{ settings.logo |  image_url: width: 600 | image_tag: 
+                            width: settings.logo_width,
+                            class: "header-heading__link--img"
+                        }}
+                    {% else %}
+                    <h1 class="header-heading__link--text" style="font-size: {{settings.logo_text}}px">
+                        {{ shop.name }}
+                    </h1>
+                    {% endif %}
+                </a>
+                <ul class="header-heading__list-menu">
+                    {% for link in section.settings.menu.links %}
+                        {% if link.url != blank %}
+                            <li class="item">
+                                <a href="{{ link.url | escape }}" class="item__link {% if link.current %} item__link--active {% endif %}">{{ link.title | escape }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="header-task">
+                {% if section.settings.show_search %}
+                    <div class="header-task__search">
+                        <input type="text" name="" id="" placeholder="Search something here!">
+                    </div>
+                {% endif %}
+
+                {% if section.settings.show_button%}
+                    <div class="header-task__button">
+                        <button class="button button--secondary">{{ section.settings.button_text }}</button>
+                    </div>
+                {% endif %}
+                {% if section.settings.show_currency %}
+                    <div class="header-task__currency">
+                        aaaaa
+                    </div>
+                {% endif %}
+            </div>
+            <div class="header-search">
+                <button class="header-search__icon button-icon">{% render 'icon-search' %}</button>
+                <div class="header-search-modal">
+                    <div class="header-search-modal__input">
+                        <input type="text" placeholder="Search..." class="header-search__input--input">
+                        <button class="header-search__input--icon button-icon">
+                            {% render 'icon-search' %}
+                        </button>
+                    </div>
+                    <button class="header-search-modal__close"></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+{%  schema  %} 
+    {
+        "name": "Header",
+        "class": "section-header",
+        "settings":[
+            {
+                "type": "link_list",
+                "id": "menu",
+                "label": "Menu"
+            },
+            {
+                "type": "header",
+                "content": "Search"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_search",
+                "label": "Show search",
+                "default": true
+            },
+            {
+                "type": "header",
+                "content": "Button"
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "default": "Join the community",
+                "label": "Button text"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_button",
+                "label": "Show button",
+                "default": true
+            },
+            {
+                "type": "header",
+                "content": "Currency"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_currency",
+                "label": "Show currency",
+                "default": true
+            }
+        ]
+    }
+{% endschema %}

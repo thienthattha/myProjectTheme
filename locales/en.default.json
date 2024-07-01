@@ -1,0 +1,9 @@
+{
+  "settings_schema": {
+    "logo": {
+      "settings": {
+        "logo_widt": "Logo Width"
+      }
+    }
+  }
+}

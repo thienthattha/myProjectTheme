@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="js" lang="{{ request.locale.iso_code }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+    
+    {% render 'meta-tags' %}
+
+    {{ 'main.css' | asset_url | stylesheet_tag }}
+
+    {%  style  %} 
+        :root {
+            --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+            --font-body-style: {{ settings.type_body_font.style }};
+            --font-body-weight: {{ settings.type_body_font.weight }};
+
+            --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+            --font-heading-style: {{ settings.type_header_font.style }};
+            --font-heading-weight: {{ settings.type_header_font.weight }};
+
+            --buttons-radius: {{ settings.buttons_radius }}px;
+            --buttons-radius-outset: {% if settings.buttons_radius > 0 %}{{ settings.buttons_radius | plus: settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+            --buttons-border-width: {% if settings.buttons_border_opacity > 0 %}{{ settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+            --buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};
+            --buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};
+            --buttons-shadow-visible: {% if settings.buttons_shadow_opacity > 0 %}1{% else %}0{% endif %};
+            --buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;
+            --buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;
+            --buttons-shadow-blur-radius: {{ settings.buttons_shadow_blur }}px;
+            --buttons-border-offset: {% if settings.buttons_radius > 0 or settings.buttons_shadow_opacity > 0 %}0.3{% else %}0{% endif %}px;
+
+            --inputs-radius: {{ settings.inputs_radius }}px;
+            --inputs-border-width: {{ settings.inputs_border_thickness }}px;
+            --inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};
+            --inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};
+            --inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;
+            --inputs-margin-offset: {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_opacity > 0 %}{{ settings.inputs_shadow_vertical_offset | abs }}{% else %}0{% endif %}px;
+            --inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;
+            --inputs-shadow-blur-radius: {{ settings.inputs_shadow_blur }}px;
+            --inputs-radius-outset: {% if settings.inputs_radius > 0 %}{{ settings.inputs_radius | plus: settings.inputs_border_thickness }}{% else %}0{% endif %}px;
+        }
+    {% endstyle %}
+
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+</head>
+<body>
+    {% sections 'header-group' %}
+    {{ content_for_layout }}
+    {% sections 'footer-group' %}
+</body>
+</html>
