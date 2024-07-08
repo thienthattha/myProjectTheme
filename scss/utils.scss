@@ -1,19 +1,25 @@
 @import 'variables';
+@import './responsive.scss';
 
-// Style general
+// ***** Style general *****
 .button-icon {
   background: none;
   border: none;
   padding: 0;
   display: flex;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
-  
+
+// Button
 .button {
   color: $gray-FDF;
-  font-weight: $font-weight-black;
+  font-weight: $font-weight-bold;
   border: none;
-  padding: 14px 28px;
+  padding: 12px 28px;
   border-radius: var(--buttons-radius);
   font-size: $font-size-base;
   
@@ -22,4 +28,92 @@
   }
 
   &--secondary-line {}
+}
+
+.button-link {
+  background: $blue-003;
+  text-decoration: none;
+  color: $gray-FDF;
+  padding: 12px 28px;
+  border-radius: 57px;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.button-line {
+  background: none;
+  text-decoration: none;
+  border: 1px solid $blue-003;
+  border-radius: 57px;
+  padding: 12px 28px;
+  color: $blue-003;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+  cursor: pointer;
+  text-align: center;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Input
+
+// Style class
+.display-none {
+  display: none;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+// Grid colums
+.grid--2-col-mobile .grid__item {
+  width: 50%;
+  max-width: 50%;
+}
+
+@include min-lg {
+  .grid--7-col-desktop .grid__item {
+    width: calc(100% / 7);
+    max-width: calc(100% / 7);
+  }
+
+  .grid--6-col-desktop .grid__item {
+    width: calc(100% / 6);
+    max-width: calc(100% / 6);
+  }
+  
+  .grid--5-col-desktop .grid__item {
+    width: 20%;
+    max-width: 20%;
+  }
+  
+  .grid--4-col-desktop .grid__item {
+    width: 25%;
+    max-width: 25%;
+  }
+  
+  .grid--3-col-desktop .grid__item {
+    width: calc(100% / 3);
+    max-width: calc(100% / 3);
+  }
+  
+  .grid--2-col-desktop .grid__item {
+    width: 50%;
+    max-width: 50%;
+  }
+
+  .grid--1-col-desktop .grid__item {
+    width: 100%;
+    max-width: 100%;
+  }
 }

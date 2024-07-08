@@ -1,0 +1,102 @@
+<div class="logo-sellers">
+    <div class="container">
+        {% if section.blocks.size > 0 %}
+            {% render 'header-section',
+                description: section.settings.description,
+                heading: section.settings.heading,
+                textButton: section.settings.text_button,
+                linkButton: section.settings.link_button | default: "#",
+            %}
+            <div class="logo-sellers__content">
+                <ul class="logo-sellers-list grid--2-col-mobile grid--{{ section.settings.columns_desktop }}-col-desktop">
+                    {% for block in section.blocks limit: section.settings.logo_to_show%}
+                        <li class="logo-sellers-list__item grid__item">
+                            <a href="{{ block.settings.link_logo |  default: "#" }}" class="logo-sellers-list__link">
+                                <img src="{{ block.settings.logo_sellers |  image_url: width: auto }}" alt="">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>Please setting add block Logo</p>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Logo Sellers",
+    "tag": "section",
+    "disabled_on": {
+        "groups": ["header", "footer"]
+    },
+    "max_blocks": 7,
+    "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "default": "Proud to be part of",
+          "label": "Description"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Pet Sellers",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "text_button",
+          "default": "View all our sellers",
+          "label": "Text button"
+        },
+        {
+          "type": "url",
+          "id": "link_button",
+          "label": "Link button"
+        },
+        {
+            "type": "range",
+            "id": "logo_to_show",
+            "min": 2,
+            "max": 25,
+            "step": 1,
+            "default": 4,
+            "label": "Maximum products to show"
+        },
+        {
+            "type": "range",
+            "id": "columns_desktop",
+            "min": 1,
+            "max": 7,
+            "step": 1,
+            "default": 4,
+            "label": "Number of columns on desktop"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "Logo",
+            "type": "sellers",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "logo_sellers",
+                    "label": "Logo sellers"
+                },
+                {
+                    "type": "url",
+                    "id": "link_logo",
+                    "label": "Link logo"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Logo Sellers"
+        }
+    ]
+}
+{% endschema %}

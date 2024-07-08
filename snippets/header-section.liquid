@@ -1,0 +1,17 @@
+<div class="header-section">
+  <div class="header-section__heading">
+    {% if description %}
+      <p class="header-section__heading--description">{{ description }}</p>
+    {% endif %}
+    {% if heading %}
+      <h3 class="header-section__heading--title">{{ heading }}</h3>
+    {% endif %}
+  </div>
+  {% if textButton != blank %} 
+    <a href="{{ linkButton }}" class="header-section__link button-line">
+      <span class="header-section__link--text">{{ textButton }}</span>  
+      <span class="header-section__link--icon">{% render 'icon-arrow-right' %}</span>  
+    </a>
+  {% endif %}
+</div>
+  

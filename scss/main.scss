@@ -4,7 +4,18 @@
 @import 'utils';
 
 // Style section
-@import 'header';
+@import './sections/header.scss';
+@import './sections/banners.scss';
+@import './sections/img-with-text.scss';
+@import './sections/blog-post.scss';
+@import './sections/logo-sellers.scss';
+@import './sections/featured-collection.scss';
+@import './sections/footer.scss';
+
+// Style snippets
+@import './snippets/header-section.scss';
+@import './snippets/video.scss';
+@import './snippets//back-to-top.scss';
 
 * {
     box-sizing: border-box;
@@ -15,19 +26,20 @@ html {
 }
 
 body {
-    font-family: var(--font-body-family);
-    font-weight: var(--font-body-weight);
-    font-size: $font-size-base;
-    line-height: 1.15;
-    // Tối ưu hiển thị
-    text-rendering: optimizeLegibility;
-    color: $blue-003;
-    margin: 0;
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  font-size: $font-size-base;
+  line-height: 1.15;
+  // Tối ưu hiển thị
+  text-rendering: optimizeLegibility;
+  color: $blue-003;
+  margin: 0;
 }
 
 h1,h2,h3,h4,h5,h6,
 p {
   margin: 0;
+  font-family: var(--font-heading-family);
 }
 
 ul {
@@ -109,8 +121,17 @@ h6 {
     }
 }
 
-// Style class
-.display-none {
-  display: none;
+
+.input-search {
+  border: none;
+  padding: 5px;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
+
+
+
+// --------

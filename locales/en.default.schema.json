@@ -94,6 +94,34 @@
     "header": {
       "name": "Header"
     },
+    "banners": {
+      "name": "Banners",
+      "settings": {
+        "title": {
+          "label": "Title text",
+          "default": "One more friend"
+        },
+        "subTitle": {
+          "label": "Sub title text",
+          "default": "Thousands more fun!"
+        },
+        "describe": {
+          "label": "Describe text"
+        },
+        "text_buttom": {
+          "label": "Text buttom"
+        },
+        "link": {
+          "label": "Link"
+        },
+        "text_link": {
+          "label": "Text link"
+        },
+        "img": {
+          "label": "Images change"
+        }
+      }
+    },
     "footer": {
       "name": "Footer"
     }

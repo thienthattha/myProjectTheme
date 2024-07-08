@@ -1,0 +1,151 @@
+{% liquid
+   assign checkDescription = section.settings.description | default: section.settings.collection.description
+   assign checkHeading = section.settings.heading | default: section.settings.collection.title
+   assign checkLinkButton = section.settings.link_button | default: '#'
+%}
+
+<div class="featured-collection">
+    <div class="container">
+        {% if section.settings.collection.size > 0 %}
+            {% render 'header-section',
+                description: checkDescription,
+                heading: checkHeading,
+                textButton: section.settings.text_button,
+                linkButton: checkLinkButton,
+            %}
+            <div class="featured-collection__wrapper">
+                <ul class="featured-collection__content grid--2-col-mobile grid--{{ section.settings.columns_desktop }}-col-desktop">
+                    {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+                        <li class="product grid__item">
+                            <a href="{{ product.url }}" class="product__link">
+                                <div class="product__img">
+                                    <img src="{{ product.featured_media | image_url: width: auto }}" alt="">
+                                </div>
+                                <div class="product__info">
+                                    <h4 class="product__info--title">{{ product.title | escape}}</h4>
+                                    <div class="product__info--detail">
+                                        {% if true %}
+                                            <div class="category item">
+                                                <span class="item__title">Product</span>
+                                                :
+                                                <span class="item__value">Dog Food</span>
+                                            </div>
+                                        {% endif %}
+                                        {% if true %}
+                                            <div class="icon-dots">{% render 'icon-dots' %}</div>
+                                            <div class="size item">
+                                                <span class="item__title">Size</span>
+                                                :
+                                                <span class="item__value">385gm</span>
+                                            </div>
+                                        {% endif %}
+                                        {% if false %}
+                                            <div class="icon-dots">{% render 'icon-dots' %}</div>
+                                            <div class="gene item">
+                                                <span class="item__title">Gene</span>
+                                                :
+                                                <span class="item__value">Male</span>
+                                            </div>
+                                        {% endif %}
+                                        {% if false %}
+                                            <div class="icon-dots">{% render 'icon-dots' %}</div>
+                                            <div class="age item">
+                                                <span class="item__title">Age</span>
+                                                :
+                                                <span class="item__value">02 months</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="product__info--price">
+                                        {% if product.price <= product.compare_at_price %}
+                                            <span class="price-sale">{{ product.compare_at_price | money}}</span>
+                                        {% endif %}
+                                        <span class="price-regular">{{ product.price | money }}</span>
+                                    </div>
+                                    <button class="button-link product__info--button">{{ section.settings.text_button_product }}</button>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>Please setting select Collection</p>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Featured collection",
+    "tag": "section",
+    "disabled_on": {
+        "groups": ["header", "footer"]
+    },
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "description",
+            "default": "Description ...",
+            "label": "Description"
+        },
+        {
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "Heading ...",
+            "label": "Heading"
+        },
+        {
+            "type": "text",
+            "id": "text_button",
+            "default": "Text button ...",
+            "label": "Text button"
+        },
+        {
+            "type": "url",
+            "id": "link_button",
+            "label": "Link button"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+        {
+            "type": "range",
+            "id": "products_to_show",
+            "min": 2,
+            "max": 25,
+            "step": 1,
+            "default": 4,
+            "label": "Maximum products to show"
+        },
+        {
+            "type": "range",
+            "id": "columns_desktop",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "default": 4,
+            "label": "Number of columns on desktop"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_desktop_slider",
+            "label": "Enable carousel on desktop",
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "text_button_product",
+            "label": "Text button product",
+            "default": "Add to cart"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured collection"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+.back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 30px;
+    height: 30px;
+    background: $background-linear-gradient;
+    transform: rotate(180deg);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.5) 8px 5px 8px 0px;
+  
+    @include min-lg {
+      width: 40px;
+      height: 40px;
+      right: 20px;
+      bottom: 20px;
+    }
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  
+    svg {
+      max-height: 10px;
+      width: auto;
+  
+      @include min-lg {
+        max-height: 8px;
+      }
+    }
+  }

@@ -1,0 +1,145 @@
+<div class="img-with-text">
+    <div class="container">
+        <div 
+            class="img-with-text__wrapper {% if section.settings.layout == "image_first" %} img-with-text__wrapper--reverse {% endif %}"
+            {%if section.settings.img_background != blank %}
+                style="
+                    background-image: url('{{ section.settings.img_background | image_url: width: auto }}');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                "
+            {% endif %}
+        >
+            <div class="img-with-text__content">
+                {% if section.settings.title != blank %}
+                    <h2 class="img-with-text__content--title">{{ section.settings.title }}</h2>
+                {% endif %}
+    
+                {% if section.settings.subTitle != blank %}
+                    <h3 class="img-with-text__content--subTitle">{{ section.settings.subTitle }}</h3>
+                {% endif %}
+    
+                {% if section.settings.describe != blank %}
+                    <p class="img-with-text__content--describe">{{ section.settings.describe }}</p>
+                {% endif %}
+    
+                <div class="img-with-text__content--link">
+                    {% if section.settings.text_buttom != blank %}
+                        <button class="img-with-text-button button-line">
+                            <span class="img-with-text-button__name">{{ section.settings.text_buttom }}</span>
+                            <span class="img-with-text-button__icon">
+                                {% render 'icon-video' %}
+                            </span>
+                        </button>
+                    {% endif %}
+                    {% if section.settings.text_link != blank %}
+                        <a href="{{ section.settings.link }}" class="img-with-text-link button-link">{{ section.settings.text_link }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="img-with-text__img">
+                {% if section.settings.img != blank %}
+                    <img src="{{ section.settings.img |  image_url: width: auto }}" alt="">
+                {% endif %}
+            </div>
+            {% render 'video',
+                videoUrl: section.settings.video_url
+                videoId: section.settings.video_url.id
+                videoType: section.settings.video_url.type
+            %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Images with text",
+        "tag": "section",
+        "disabled_on": {
+            "groups": ["header", "footer"]
+        },
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title text",
+                "default": "One more friend"
+            },
+            {
+                "type": "text",
+                "id": "subTitle",
+                "label": "Sub title text",
+                "default": "Thousands more fun!"
+            },
+            {
+                "type": "textarea",
+                "id": "describe",
+                "label": "Describe text",
+                "default": "Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!"
+            },
+            {
+                "type": "text",
+                "id": "text_buttom",
+                "label": "Text buttom",
+                "default": "View Intro"
+            },
+            {
+                "type": "text",
+                "id": "text_link",
+                "label": "Text link",
+                "default": "One more friend"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "Link"
+            },
+            {
+                "type": "image_picker",
+                "id": "img",
+                "label": "Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "img_background",
+                "label": "Background Image"
+            },
+            {
+                "type": "select",
+                "id": "layout",
+                "options": [
+                    {
+                    "value": "image_first",
+                    "label": "Image first"
+                    },
+                    {
+                    "value": "text_first",
+                    "label": "Image second"
+                    }
+                ],
+                "default": "text_first",
+                "label": "Desktop image width"
+            },
+            {
+                "type": "video_url",
+                "id": "video_url",
+                "label": "URL",
+                "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+                "info": "Use a YouTube or Vimeo URL",
+                "accept": [
+                    "youtube",
+                    "vimeo"
+                ]
+            }
+        ],
+        "presets": [
+        {
+          "name": "Images with text",
+          "settings": {
+            "title": "Images with text"
+          }
+        }
+      ]
+    }
+    {% endschema %}

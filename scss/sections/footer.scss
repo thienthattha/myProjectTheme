@@ -1,0 +1,257 @@
+.footer {
+    padding: 40px 20px;
+    background: $background-linear-gradient;
+    border-radius: 20px 20px 0px 0px;
+    
+    @include min-lg {
+      padding: 80px 40px;
+      border-radius: 40px 40px 0px 0px;
+    }
+  
+    &__wrapper {
+      padding-bottom: 40px;
+      border-bottom: 1px solid $gray-CCD;
+    }
+  }
+  
+  .email-signup {
+    background: $blue-003;
+    padding: 16px;
+    border-radius: 16px;
+  
+    @include min-lg {
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    &__title {
+      font-size: $h5-font-size;
+      font-weight: $font-weight-bold;
+      color: $gray-FDF;
+      
+      @include min-lg {
+        width: 30%;
+        font-size: $h4-font-size;
+      }
+    }
+  
+    &__form {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 14px;
+      background: $gray-FDF;
+      display: flex;
+      flex-direction: column;
+      
+      @include min-lg {
+        width: 70%;
+        margin-left: 20px;
+        margin-top: 0px;
+        flex-direction: row;
+      }
+    }
+  
+    &__input {
+      border: 1px solid $gray-99A;
+      border-radius: 8px;
+      padding: 14px 28px;
+  
+      &::placeholder {
+        color: $gray-99A;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+  
+      @include min-lg {
+        width: 70%;
+      }
+    }
+  
+    &__button {
+      font-size: $font-size-small;
+      margin-top: 12px;
+      border-radius: 8px;
+  
+      @include min-lg {
+        margin-top: 0;
+        margin-left: 12px;
+        width: 30%;
+      }
+    }
+  }
+  
+  .quick-link {
+    padding-top: 40px;
+  
+    @include min-lg {
+      display: flex;
+      align-items: center;
+    }
+  
+    &__menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+  
+      @include min-lg {
+        justify-content: flex-start;
+      }
+  
+      &--item {
+        @include min-lg {
+          padding-right: 60px;
+        }
+      }
+  
+      &--link {
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        color: $gray-001;
+        text-decoration: none;
+        position: relative;
+  
+        &::before {
+          position: absolute;
+          content: "";
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 1px;
+          background: $gray-002;
+          transition: all 0.3s ease-in-out;
+        }
+        
+        &:hover {
+          &::before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  
+    &__social {
+      padding: 20px 91px 0px 91px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+  
+      @include min-lg {
+        justify-content: flex-end;
+      }
+  
+      @include min-lg { 
+        padding: 0px;
+      }
+  
+      &--item {
+        padding-left: 40px;
+      }
+  
+      &--link {
+        display: flex;
+  
+        &:hover {
+          opacity: 0.8;
+        }
+  
+        svg {
+          max-height: 20px;
+          width: auto;
+          
+          @include min-lg {
+            max-height: 24px;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+  
+  .copyright {
+    // position: relative;
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    @include min-lg {
+      margin-top: 40px;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    &__logo {
+  
+      @include min-lg {
+        order: 2;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+      }
+    }
+  
+    &__caption {
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+  
+      @include min-lg {
+        order: 3;
+        padding-top: 0px;
+      }
+  
+      &--content {
+        padding-right: 12px;
+  
+        @include min-lg {
+          padding-right: 16px;
+          font-size: $font-size-small;
+        }
+  
+        &:last-child {
+          padding-right: 0;
+        }
+
+        a {
+            font-size: $font-size-smaller;
+            font-weight: $font-weight-medium;
+            color: $gray-667;
+            text-decoration: none;
+
+            @include min-lg {
+                font-size: $font-size-small;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+      }
+    }
+  
+    &__license {
+      order: 1;
+      padding-top: 8px;
+  
+      @include min-lg {
+        padding-top: 0px;
+      }
+      
+      &--content {
+        font-size: 10px;
+        font-weight: $font-weight-medium;
+        color: $gray-667;
+    
+        @include min-lg {
+          font-size: $font-size-small;
+        }
+      }
+    }
+}

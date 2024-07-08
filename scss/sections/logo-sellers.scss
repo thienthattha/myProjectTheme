@@ -1,0 +1,42 @@
+.logo-sellers {
+    padding: 20px 0px;
+    
+    @include min-lg {
+      padding: 40p;
+    }
+  
+    .logo-sellers-list {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+
+      &__content {
+        margin-right: -10px;
+        margin-left: -10px;
+      }
+  
+      &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 10px;
+        overflow: hidden;
+      }
+  
+      &__link {
+        display: block;
+        
+        img {
+          width: 100%;
+          height: auto;
+          transition: all 0.3s ease-in-out;
+        }
+  
+        &:hover {
+          img {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }

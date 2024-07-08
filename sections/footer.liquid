@@ -1,1 +1,221 @@
-<footer>footer</footer>
+<footer class="footer">
+    <div class="container">
+        <div class="footer__wrapper">
+            <div class="email-signup">
+                {% if section.settings.title != blank %}
+                    <h3 class="email-signup__title">{{ section.settings.title }}</h3>
+                {% endif %}
+                {% if section.settings.text_button != blank  %}
+                    <div class="email-signup__form">
+                        <input type="text" class="email-signup__input" placeholder="Enter your Email">
+                        <button class="button-link email-signup__button">{{ section.settings.text_button }}</button>
+                    </div>
+
+
+                    {% comment %} {% form 'customer', id: 'ContactFooter', class: '' %}
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+                        <div class="email-signup__form">
+                            <input
+                              id="NewsletterForm--{{ section.id }}"
+                              type="email"
+                              name="contact[email]"
+                              class="email-signup__input"
+                              value="{{ form.email }}"
+                              aria-required="true"
+                              autocorrect="off"
+                              autocapitalize="off"
+                              autocomplete="email"
+                              {% if form.errors %}
+                                autofocus
+                                aria-invalid="true"
+                                aria-describedby="ContactFooter-error"
+                              {% elsif form.posted_successfully? %}
+                                aria-describedby="ContactFooter-success"
+                              {% endif %}
+                              placeholder="Enter your Email"
+                              required
+                            >
+                            <button
+                              type="submit"
+                              class="button-link email-signup__button"
+                              name="commit"
+                              id="Subscribe"
+                              aria-label="{{ 'newsletter.button_label' | t }}"
+                            >
+                                {{ section.settings.text_button }}
+                            </button>
+                          </div>
+                          {% if form.errors %}
+                            <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                              {% render 'icon-error' %}
+                              {{ form.errors.translated_fields.email | capitalize }}
+                              {{ form.errors.messages.email }}
+                            </small>
+                          {% endif %}
+                        </div>
+                        {% if form.posted_successfully? %}
+                          <h3
+                            class="newsletter-form__message newsletter-form__message--success form__message"
+                            id="ContactFooter-success"
+                            tabindex="-1"
+                            autofocus
+                          >
+                            {% render 'icon-success' %}
+                            Thanks for subscribing
+                          </h3>
+                        {% endif %}
+                    {% endform %} {% endcomment %}
+                {% endif %}
+            </div>
+            <div class="quick-link">
+                <ul class="quick-link__menu">
+                    {% for link in section.settings.menu.links %}
+                        {% if link.url != blank %}
+                            <li class="quick-link__menu--item">
+                                <a href="{{ link.url | escape }}" class="quick-link__menu--link">{{ link.title | escape }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <ul class="quick-link__social">
+                        {% if section.settings.social_facebook_link != blank %}
+                            <li class="quick-link__social--item">
+                                <a href="{{ section.settings.social_facebook_link }}" class="quick-link__social--link">
+                                    {% render "icon-facebook" %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if section.settings.social_twitter_link != blank %}
+                            <li class="quick-link__social--item">
+                                <a href="{{ section.settings.social_twitter_link }}" class="quick-link__social--link">
+                                    {% render "icon-twitter" %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if section.settings.social_instagram_link != blank %}
+                            <li class="quick-link__social--item">
+                                <a href="{{ section.settings.social_instagram_link }}" class="quick-link__social--link">
+                                    {% render "icon-instagram" %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if section.settings.social_youtube_link != blank %}
+                            <li class="quick-link__social--item">
+                                <a href="{{ section.settings.social_youtube_link }}" class="quick-link__social--link">
+                                    {% render "icon-youtobe" %}
+                                </a>
+                            </li>
+                        {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="copyright__logo">
+                <a href="{{ routes.root_url }}" class="copyright__logo--link">
+                    {% if section.settings.logo_footer != blank %}
+                        {{ section.settings.logo_footer |  image_url: width: auto | image_tag: 
+                            width: section.settings.logo_width,
+                            class: "header-heading__link--img"
+                        }}
+                    {% endif %}
+                </a>
+            </div>
+            <div class="copyright__caption">
+                <small class="copyright__caption--content">
+                    {{ 'Terms of Service' | link_to: routes.root_url }}
+                </small>
+                <small class="copyright__caption--content">
+                    {{ 'Privacy Policy' |  link_to: routes.root_url}}
+                </small>
+            </div>
+            <div class="copyright__license">
+                <small class="copyright__license--content">
+                    &copy; {{ 'now' | date: '%Y' }} Monito. All rights reserved.
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{%  schema  %} 
+    {
+        "name": "Footer",
+        "class": "section-footer",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Email signup"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title",
+                "default": "Register now so you don't miss our programs"
+            },
+            {
+                "type": "text",
+                "id": "text_button",
+                "label": "Text button",
+                "default": "Subcribe Now"
+            },
+            {
+                "type": "header",
+                "content": "Quick link"
+            },
+            {
+                "type": "link_list",
+                "id": "menu",
+                "default": "footer",
+                "label": "Menu",
+                "info": "Displays only top-level menu items."
+            },
+            {
+                "type": "header",
+                "content": "Social accounts"
+            },
+            {
+                "type": "text",
+                "id": "social_facebook_link",
+                "label": "Facebook",
+                "placeholder": "https:\/\/facebook.com\/shopify"
+            },
+            {
+                "type": "text",
+                "id": "social_twitter_link",
+                "label": "Twitter",
+                "placeholder": "hhttps:\/\/twiitter.com\/shopify"
+            },
+            {
+                "type": "text",
+                "id": "social_instagram_link",
+                "label": "Instagram",
+                "placeholder": "https:\/\/instagram.com\/shopify"
+            },
+            {
+                "type": "text",
+                "id": "social_youtube_link",
+                "label": "Youtobe",
+                "placeholder": "https:\/\/youtobe.com\/shopify"
+            },
+            {
+                "type": "header",
+                "content": "Copyright"
+            },
+            {
+                "type": "image_picker",
+                "id": "logo_footer",
+                "label": "Logo Footer"
+            },
+            {
+                "type": "range",
+                "id": "logo_width",
+                "min": 50,
+                "max": 200,
+                "step": 5,
+                "default": 115,
+                "unit": "px",
+                "label": "Desktop logo width"
+            }
+        ]
+    }
+{% endschema %}

@@ -3,8 +3,11 @@
 {%  schema  %} 
     {
         "name": "Announcement Bar",
-        "class": "announcement-bar",
+        "tag": "section",
         "max_blocks": 3,
+        "enabled_on": {
+            "groups": ["header"]
+        },
         "settings": [
             {
                 "type": "color_scheme",
@@ -87,6 +90,11 @@
                     }
                 ]
 
+            }
+        ],
+        "presets": [
+            {
+            "name": "Announcement Bar"
             }
         ]
     } 

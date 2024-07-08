@@ -1,0 +1,133 @@
+{% liquid
+  assign checkHeading = section.settings.heading | default: section.settings.blog.title
+%}
+
+<div class="blogs-post">
+    <div class="container">
+        {% if section.settings.blog.size > 0 %}
+          {% render 'header-section',
+              description: section.settings.description,
+              heading: checkHeading,
+              textButton: section.settings.text_button,
+              linkButton: section.setting.link_button | default: "#",
+          %}
+          <div class="blogs-post__wrapper">
+              <ul class="blogs-post__content grid--{{ section.settings.columns_desktop }}-col-desktop">
+                  {% if section.settings.blog != blank and section.settings.blog.articles_count > 0 %}
+                      {% for article in section.settings.blog.articles limit: section.settings.post_limit %}
+                          <a href="{{ article.url }}" class="blogs-post__link grid__item">
+                              <li class="item-post">
+                                  {% if section.settings.show_image != blank %}
+                                      <div class="item-post__img">
+                                        <img src="{{ article.image.src | image_url: width: auto }}" alt="">
+                                      </div>
+                                  {% endif %}
+                                  <div class="item-post__info">
+                                      {% if section.settings.show_date != blank %}
+                                        <span class="item-post__info--date">{{ article.published_at | time_tag: format: 'date' }}</span>
+                                      {% endif %}
+                                      {% if section.settings.show_author != blank %}
+                                        <span class="item-post__info--author">{{ article.author }}</span>
+                                      {% endif %}
+                                      <h4 class="item-post__info--title">{{ article.title }}</h4>
+                                      <p class="item-post__info--describe">{{ article.content }}</p>
+                                  </div>
+                              </li>
+                          </a>
+                      {% endfor %}
+                  {% endif %}
+              </ul>
+              {% if section.settings.text_button != blank %} 
+                  <a href="{{ section.setting.link_button |  default: "#" }}" class="blogs-post__links button-line">
+                    <span class="blogs-post__links--text">{{ section.settings.text_button }}</span>  
+                    <span class="blogs-post__links--icon">{% render 'icon-arrow-right' %}</span>  
+                  </a>
+              {% endif %}
+          </div>
+        {% else %}
+          <p>Please setting select Blog</p>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+    {
+      "name": "Blog posts",
+      "tag": "section",
+      "disabled_on": {
+        "groups": ["header", "footer"]
+      },
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "default": "You already know ?",
+          "label": "Description"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Heading ...",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "text_button",
+          "default": "View more",
+          "label": "Text button"
+        },
+        {
+          "type": "url",
+          "id": "link_button",
+          "label": "Link button"
+        },
+        {
+          "type": "blog",
+          "id": "blog",
+          "label": "Blog"
+        },
+        {
+          "type": "range",
+          "id": "post_limit",
+          "min": 2,
+          "max": 4,
+          "step": 1,
+          "default": 3,
+          "label": "Number of blog posts to show"
+        },
+        {
+          "type": "range",
+          "id": "columns_desktop",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "default": 3,
+          "label": "Number of columns on desktop"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_image",
+          "default": true,
+          "label": "Show featured image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_date",
+          "default": false,
+          "label": "Show date"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_author",
+          "default": true,
+          "label": "Show author"
+        } 
+      ],
+      "presets": [
+        {
+          "name": "Blog posts"
+        }
+      ]
+    }
+    {% endschema %}
+    

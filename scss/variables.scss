@@ -15,11 +15,20 @@ $black:    #000;
 
 // Color
 $gray-FDF: #FDFDFD;
+$gray-CCD: #CCD1D2;
+$gray-99A: #99A2A5;
+$gray-667: #667479;
+$gray-002: #002A48;
+$gray-001: #00171F;
+$gray-242: #242B33;
 $blue-003: #003459;
+$blue-00A: #00A7E7;
+$red: #f00;
+$yellow-FC: #FCEED5;
 
 
 // Background header
-$background-header: linear-gradient(102.87deg, #FCEED5 6.43%, #FCEED5 78.33%, #FFE7BA 104.24%);
+$background-linear-gradient: linear-gradient(102.87deg, #FCEED5 6.43%, #FCEED5 78.33%, #FFE7BA 104.24%);
 
 
 // Font size
@@ -46,6 +55,8 @@ $h6-font-size-mobile:         $font-size-small;
 $font-weight-lighter:     100;
 $font-weight-light:       300;
 $font-weight-normal:      400;
-$font-weight-bold:        600;
-$font-weight-black:       700;
+$font-weight-medium:      500; 
+$font-weight-semi-bold:   600;
+$font-weight-bold:        700;
+$font-weight-extra-bold:  800;
 $font-weight-bolder:      900;

@@ -1,0 +1,130 @@
+<div 
+    class="banners"
+    {%if section.settings.img_background != blank %}
+        style="
+            background-image: url('{{ section.settings.img_background | image_url: width: auto }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        "
+    {% endif %}
+>
+    <div class="container">
+        <div class="banners__wrapper">
+            <div class="banners__content">
+                {% if section.settings.title %}
+                    <h2 class="banners__content--title">{{ section.settings.title }}</h2>
+                {% endif %}
+    
+                {% if section.settings.subTitle %}
+                    <h3 class="banners__content--sub-title">{{ section.settings.subTitle }}</h3>
+                {% endif %}
+    
+                {% if section.settings.describe %}
+                    <p class="banners__content--describe">{{ section.settings.describe }}</p>
+                {% endif %}
+    
+                <div class="banners__content--link">
+                    {% if section.settings.text_buttom %}
+                        <button class="banners-button button-line">
+                            <span class="banners-button__name">{{ section.settings.text_buttom }}</span>
+                            <span class="banners-button__icon">
+                                {% render 'icon-video' %}
+                            </span>
+                        </button>
+                    {% endif %}
+                    {% if section.settings.text_link %}
+                        <a href="{{ section.settings.link | default: '#' }}" class="banners-link button-link">{{ section.settings.text_link }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="banners__img">
+                {% if section.settings.img %}
+                    <img src="{{ section.settings.img |  image_url: width: auto }}" alt="">
+                {% endif %}
+            </div>
+            {% render 'video',
+                videoUrl: section.settings.video_url
+                videoId: section.settings.video_url.id
+                videoType: section.settings.video_url.type
+            %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "t:sections.banners.name",
+    "tag": "section",
+    "limit": 1,
+    "disabled_on": {
+        "groups": ["header", "footer"]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title text",
+            "default": "One more friend"
+        },
+        {
+            "type": "text",
+            "id": "subTitle",
+            "label": "Sub title text",
+            "default": "Thousands more fun!"
+        },
+        {
+            "type": "textarea",
+            "id": "describe",
+            "label": "Describe text",
+            "default": "Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!"
+        },
+        {
+            "type": "text",
+            "id": "text_buttom",
+            "label": "Text buttom",
+            "default": "View Intro"
+        },
+        {
+            "type": "text",
+            "id": "text_link",
+            "label": "Text link",
+            "default": "One more friend"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+        },
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image banners"
+        },
+        {
+            "type": "image_picker",
+            "id": "img_background",
+            "label": "Background Image banners"
+        },
+        {
+            "type": "video_url",
+            "id": "video_url",
+            "label": "URL",
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "info": "Use a YouTube or Vimeo URL",
+            "accept": [
+                "youtube",
+                "vimeo"
+            ]
+        }
+    ],
+    "presets": [
+    {
+      "name": "banners",
+      "settings": {
+        "title": "banners"
+      }
+    }
+  ]
+}
+{% endschema %}

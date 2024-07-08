@@ -1,13 +1,6 @@
 {
   "layout": "layout1",
-  "sections": {
-    "main": {
-      "type": "main",
-      "settings": {}
-    }
-  },
-  "order": [
-    "main"
-  ]
-  }
+  "sections": {},
+  "order": []
+}
   

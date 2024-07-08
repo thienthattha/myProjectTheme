@@ -1,0 +1,82 @@
+.banners {
+    background: $background-linear-gradient;
+  
+    &__wrapper {
+      position: relative;
+      overflow: hidden;
+      
+      @include min-lg {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+      }
+    }
+  
+    &__content {
+      padding: 35px 0px 25px;
+  
+      @include min-lg {
+        width: 50%;
+      }
+  
+      &--title {
+        font-size: 46px;
+        font-weight: $font-weight-extra-bold;
+        color: $gray-002;
+      }
+      
+      &--subTitle {
+        font-size: 28px;
+        font-weight: $font-weight-bold;
+        color: $gray-002;
+      }
+  
+      &--describe {
+        font-size: $font-size-small;
+        font-weight: $font-weight-medium;
+        padding-top: 12px;
+        color: $gray-242;
+      }
+  
+      &--link {
+        padding-top: 32px;
+        display: flex;
+  
+        .banners-button {
+          display: flex;
+          align-items: center;
+  
+          &__name {
+            padding-right: 8px;
+          }
+  
+          &__icon {
+            display: contents;
+            svg {
+              border: 1px solid $blue-003;
+              border-radius: 50%;
+            }
+          }
+        }
+  
+        .banners-link {
+          margin-left: 16px;
+          
+          @include min-lg {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+  
+    &__img {
+      @include min-lg {
+        width: 50%;
+      }
+  
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+}
