@@ -21,13 +21,22 @@
 
           .img-with-text__content--link {
             justify-content: flex-end;
+
+            .img-with-text-button {
+              margin-right: 0;
+            }
+    
+            .img-with-text-link {
+              margin-left: 20px;
+            }
           }
         }
+
       }
     }
   
     &__content {
-      padding: 35px 15px 25px;
+      padding: 40px 20px 23px;
       text-align: center;
   
       @include min-lg {
@@ -38,28 +47,34 @@
   
       &--title {
         font-size: 36px;
+        line-height: 54px;
         font-weight: $font-weight-extra-bold;
         color: $gray-002;
   
         @include min-lg {
           font-size: 52px;
+          line-height: 68px;
         }
       }
       
       &--subTitle {
+        padding-top: 2px;
         font-size: 24px;
+        line-height: 36px;
         font-weight: $font-weight-bold;
         color: $gray-002;
   
         @include min-lg {
           font-size: 36px;
+          line-height: 54px;
         }
       }
   
       &--describe {
-        font-size: $font-size-small;
+        font-size: $font-size-small;  
         font-weight: $font-weight-medium;
         padding-top: 12px;
+        line-height: 18px;
         color: $gray-242;
   
         @include min-lg {
@@ -68,10 +83,11 @@
       }
   
       &--link {
-        padding-top: 32px;
+        padding-top: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
   
         @include min-lg {
           padding-top: 24px;
@@ -81,6 +97,12 @@
         .img-with-text-button {
           display: flex;
           align-items: center;
+          margin-top: 16px;
+          margin-right: 16px;
+
+          @include min-lg {
+            margin-right: 20px;
+          }
   
           &__name {
             padding-right: 8px;
@@ -96,18 +118,28 @@
         }
   
         .img-with-text-link {
-          margin-left: 16px;
-          
-          @include min-lg {
-            margin-left: 20px;
-          }
+          margin-top: 16px;
         }
       }
     }
   
     &__img {
+      display: flex;
+            
       @include min-lg {
         width: 50%;
+      }
+
+      &--end {
+        align-self: flex-end;
+      }
+
+      &--top {
+        align-self: flex-start;
+      }
+
+      &--center {
+        align-self: center;
       }
   
       img {

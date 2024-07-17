@@ -1,0 +1,13 @@
+{
+    "layout": "layout1",
+    "sections": {
+      "main": {
+        "type": "main-collection",
+        "settings": {
+        }
+      }
+    },
+    "order": [
+      "main"
+    ]
+  }

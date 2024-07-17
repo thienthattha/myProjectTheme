@@ -1,0 +1,44 @@
+.cart-footer {
+    padding: 30px 0px;
+  
+    @include min-lg {
+      padding: 50px;
+    }
+  
+    &__wrapper {
+      text-align: center;
+  
+      @include min-lg {
+        text-align: right;
+      }
+    }
+  
+    &__total {
+      color: $gray-001;
+      font-size: $font-size-small;
+      line-height: 20px;
+  
+      @include min-lg {
+        font-size: $font-size-base;
+        line-height: 24px;
+      }
+  
+      &--price {
+        padding-left: 5px;
+      }
+    }
+  
+    &__checkout {
+      padding-top: 15px;
+  
+      button {
+        width: 100%;
+        font-size: 1.4rem;
+        border-radius: 8px;
+  
+        @include min-lg {
+          width: 250px;
+        }
+      }
+    }
+  }

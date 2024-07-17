@@ -5,28 +5,33 @@
   @include min-lg {
     margin-bottom: 28px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
   }
   
   &__heading {
-    &--description {
+    &--subheading {
       font-size: $font-size-small;
       font-weight: $font-weight-medium;
       color: $black;
+      line-height: 20px;
       
       @include min-lg {
         font-size: $font-size-base;
+        line-height: 24px;
       }
     }
 
     &--title {
+      padding-top: 2px;
       font-size: $h3-font-size-mobile;
+      line-height: 32px;
       font-weight: $font-weight-bold;
       color: $blue-003;
 
       @include min-lg {
         font-size: $h4-font-size;
+        line-height: 36px;
       }
     }
   }
@@ -38,6 +43,7 @@
       display: flex;
       align-items: center;
       font-size: $font-size-small;
+      line-height: 20px;
     }
     
     &--icon {

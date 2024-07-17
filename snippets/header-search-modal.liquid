@@ -1,0 +1,30 @@
+<predictive-search class="header-search-modal">
+    <div class="header-search-modal__content">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="header-search-modal__form">
+            <div class="header-search-modal__input">
+                <input
+                    placeholder="Search..."
+                    class="header-search-modal__input--input input-search"
+                    id="Search"
+                    type="search"
+                    name="q"
+                    value="{{ search.terms | escape }}"
+                    role="combobox"
+                    aria-expanded="false"
+                    aria-owns="predictive-search-results"
+                    aria-controls="predictive-search-results"
+                    aria-haspopup="listbox"
+                    aria-autocomplete="list"
+                >
+                <button type="submit" class="header-search-modal__input--icon button-icon">
+                    {% render 'icon-search' %}
+                </button>
+            </div>    
+            <input name="options[prefix]" type="hidden" value="last">
+            <div id="predictive-search" tabindex="-1"></div>
+        </form>
+        <button class="header-search-modal__close button-icon">
+            {% render 'icon-close' %}
+        </button>
+    </div>
+</predictive-search>

@@ -1,5 +1,5 @@
 {% liquid
-   assign checkDescription = section.settings.description | default: section.settings.collection.description
+   assign checkSubHeading = section.settings.sub_heading | default: section.settings.collection.description
    assign checkHeading = section.settings.heading | default: section.settings.collection.title
    assign checkLinkButton = section.settings.link_button | default: '#'
 %}
@@ -8,21 +8,39 @@
     <div class="container">
         {% if section.settings.collection.size > 0 %}
             {% render 'header-section',
-                description: checkDescription,
-                heading: checkHeading,
+                subHeading: section.settings.sub_heading,
+                heading: section.settings.heading,
                 textButton: section.settings.text_button,
                 linkButton: checkLinkButton,
             %}
             <div class="featured-collection__wrapper">
-                <ul class="featured-collection__content grid--2-col-mobile grid--{{ section.settings.columns_desktop }}-col-desktop">
+                <ul 
+                    class="
+                        featured-collection__content 
+                        grid--2-col-mobile 
+                        grid--{{ section.settings.columns_desktop }}-col-desktop 
+                        {% if section.settings.enable_slider %} slide-show {% endif %}
+                    "
+                >
                     {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
                         <li class="product grid__item">
-                            <a href="{{ product.url }}" class="product__link">
+                            <div class="product__link">
                                 <div class="product__img">
-                                    <img src="{{ product.featured_media | image_url: width: auto }}" alt="">
+                                    <a href="{{ product.url }}">
+                                        <img src="{{ product.featured_media | image_url: width: auto }}" alt="">
+                                        <div class="product__img--lable">
+                                            {% if product.available == false %}
+                                                <span>Sold out</span>
+                                            {% elsif product.compare_at_price > product.price and product.available %}
+                                                <span>Sale</span>
+                                            {% endif %}
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="product__info">
-                                    <h4 class="product__info--title">{{ product.title | escape}}</h4>
+                                    <a href="{{ product.url }}">
+                                        <h4 class="product__info--title">{{ product.title | escape}}</h4>
+                                    </a>
                                     <div class="product__info--detail">
                                         {% if true %}
                                             <div class="category item">
@@ -62,12 +80,26 @@
                                         {% endif %}
                                         <span class="price-regular">{{ product.price | money }}</span>
                                     </div>
-                                    <button class="button-link product__info--button">{{ section.settings.text_button_product }}</button>
+                                    {% for variant in product.variants %}
+                                        <button 
+                                            class="add-to-cart button-link product__info--button"
+                                            data-variant-id="{{ variant.id }}"
+                                            {% if product.available == false %}disabled{% endif %}
+                                        >
+                                            {{ section.settings.text_button_product }}
+                                        </button>
+                                    {% endfor %}
                                 </div>
-                            </a>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
+                {% if section.settings.text_button != blank %} 
+                    <a href="{{ section.setting.link_button |  default: "#" }}" class="button-line featured-collection__links">
+                      <span class="blogs-post__links--text">{{ section.settings.text_button }}</span>  
+                      <span class="blogs-post__links--icon">{% render 'icon-arrow-right' %}</span>  
+                    </a>
+                {% endif %}
             </div>
         {% else %}
             <p>Please setting select Collection</p>
@@ -85,9 +117,9 @@
     "settings": [
         {
             "type": "inline_richtext",
-            "id": "description",
-            "default": "Description ...",
-            "label": "Description"
+            "id": "sub_heading",
+            "default": "Sub heading ...",
+            "label": "Sub heading"
         },
         {
             "type": "inline_richtext",
@@ -131,8 +163,8 @@
         },
         {
             "type": "checkbox",
-            "id": "enable_desktop_slider",
-            "label": "Enable carousel on desktop",
+            "id": "enable_slider",
+            "label": "Enable carousel",
             "default": false
         },
         {

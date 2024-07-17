@@ -6,17 +6,17 @@
     <div class="container">
         {% if section.settings.blog.size > 0 %}
           {% render 'header-section',
-              description: section.settings.description,
-              heading: checkHeading,
-              textButton: section.settings.text_button,
-              linkButton: section.setting.link_button | default: "#",
+            subHeading: section.settings.sub_heading,
+            heading: section.settings.heading,
+            textButton: section.settings.text_button,
+            linkButton: section.setting.link_button | default: "#",
           %}
           <div class="blogs-post__wrapper">
               <ul class="blogs-post__content grid--{{ section.settings.columns_desktop }}-col-desktop">
                   {% if section.settings.blog != blank and section.settings.blog.articles_count > 0 %}
                       {% for article in section.settings.blog.articles limit: section.settings.post_limit %}
-                          <a href="{{ article.url }}" class="blogs-post__link grid__item">
-                              <li class="item-post">
+                          <li class="blogs-post__link grid__item">
+                              <a href="{{ article.url }}" class="item-post">
                                   {% if section.settings.show_image != blank %}
                                       <div class="item-post__img">
                                         <img src="{{ article.image.src | image_url: width: auto }}" alt="">
@@ -32,8 +32,8 @@
                                       <h4 class="item-post__info--title">{{ article.title }}</h4>
                                       <p class="item-post__info--describe">{{ article.content }}</p>
                                   </div>
-                              </li>
-                          </a>
+                              </a>
+                          </li>
                       {% endfor %}
                   {% endif %}
               </ul>
@@ -60,9 +60,9 @@
       "settings": [
         {
           "type": "inline_richtext",
-          "id": "description",
-          "default": "You already know ?",
-          "label": "Description"
+          "id": "sub_heading",
+          "default": "Sub heading ...",
+          "label": "Sub heading"
         },
         {
           "type": "inline_richtext",
@@ -73,10 +73,10 @@
         {
           "type": "text",
           "id": "text_button",
-          "default": "View more",
+          "default": "Text button ...",
           "label": "Text button"
         },
-        {
+      {
           "type": "url",
           "id": "link_button",
           "label": "Link button"

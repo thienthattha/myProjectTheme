@@ -1,3 +1,9 @@
+{% style %}
+    :root {
+        --background-header: {{ section.settings.background }}
+    }
+{% endstyle %}
+
 <header 
     class="header"
     {%if section.settings.img_background != blank %}
@@ -95,57 +101,78 @@
             </div>
             <div class="header-task">
                 {% if section.settings.show_search %}
-                    <div class="header-task__search">
-                        <button class="header-task__search--button button-icon">
-                            {% render 'icon-search' %}
-                        </button>
-                        <input type="text" name="" id="" placeholder="Search something here!" class="header-task__search--input">
-                    </div>
+                    <predictive-search class="header-task__wrapper">
+                        <form action="{{ routes.search_url }}" method="get" role="search" class="header-task__search">
+                            <button type="submit" class="header-task__search--button button-icon">
+                                {% render 'icon-search' %}
+                            </button>
+                            <input
+                                placeholder="Search something here!" 
+                                class="header-task__search--input"
+                                id="Search"
+                                type="search"
+                                name="q"
+                                value="{{ search.terms | escape }}"
+                                role="combobox"
+                                aria-expanded="false"
+                                aria-owns="predictive-search-results"
+                                aria-controls="predictive-search-results"
+                                aria-haspopup="listbox"
+                                aria-autocomplete="list"
+                            >
+                            <input name="options[prefix]" type="hidden" value="last">
+                            <div id="predictive-search" tabindex="-1"></div>
+                        </form>
+                    </predictive-search>
                 {% endif %}
 
                 {% if section.settings.show_button and section.settings.button_text != blank%}
                     <div class="header-task__button">
-                        <button class="button button--secondary">{{ section.settings.button_text }}</button>
+                        <a href="{{ section.settings.button_link | default: '#' }}" class="button button--secondary">{{ section.settings.button_text }}</a>
                     </div>
                 {% endif %}
 
                 {% if section.settings.show_currency %}
-                    <div class="header-task__disclosure">
-                        <button class="header-task__disclosure--btn button-icon">
-                            {% render 'icon-frame' %}
-                            <span class="disclosure-text">
-                                {{ localization.country.currency.iso_code }}
-                            </span>
-                            {% render 'icon-caret' %}
-                        </button>
-                        <ul class="header-task__disclosure--list">
-                            {% for country in localization.available_countries -%}
-                                <li class="item {% if country.iso_code == localization.country.iso_code %} item--gray {% endif %}">
-                                    <a href="" class="item__link">
+                    {% if localization.available_countries.size > 1 %}
+                        <localization-form>
+                          {% form 'localization' %}
+                            <div class="header-task__disclosure">
+                              <button type="button" class="header-task__disclosure--btn button-icon" aria-expanded="false" aria-controls="CountryList">
+                                {% comment %} {% render 'icon-frame' %}  {% endcomment %}
+
+                                <span class="flag-icon flag-icon-{{ localization.country.iso_code | downcase }} item__flag"></span>
+                                <span class="disclosure-text">
+                                    {% comment %} {{ localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}) {% endcomment %}
+                                    {{ localization.country.currency.iso_code }}
+                                </span>
+                                {% render 'icon-caret' %}
+                              </button>
+                      
+                              <ul id="CountryList" role="list" class="header-task__disclosure--list">
+                                {% for country in localization.available_countries %}
+                                  <li class="item" tabindex="-1">
+                                    <a href="#"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}" class="item__link">
+                                        <span class="flag-icon flag-icon-{{ country.iso_code | downcase }} item__flag"></span>
+                                        <span class="tiem__name">
+                                            {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                                            </span>
                                         <span class="item__icon {% if country.iso_code != localization.country.iso_code %} visibility-hidden {% endif %}">
                                             {% render 'icon-checkmark' %}
                                         </span>
-                                        <span class="tiem__name">{{ country.name }}</span>
                                     </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                                  </li>
+                                {% endfor %}
+                              </ul>
+                              <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+                            </div>
+                          {% endform %}
+                        </localization-form>
+                      {% endif %}
                 {% endif %}
             </div>
             <div class="header-search">
                 <button class="header-search__icon button-icon">{% render 'icon-search' %}</button>
-                <div class="header-search-modal">
-                    <div class="header-search-modal__input">
-                        <input type="text" placeholder="Search..." class="header-search-modal__input--input input-search">
-                        <button class="header-search-modal__input--icon button-icon">
-                            {% render 'icon-search' %}
-                        </button>
-                    </div>
-                    <button class="header-search-modal__close button-icon">
-                        {% render 'icon-close' %}
-                    </button>
-                </div>
+                {% render 'header-search-modal' %}
             </div>
         </nav>
     </div>
@@ -182,6 +209,11 @@
                 "label": "Button text"
             },
             {
+                "type": "url",
+                "id": "button_link",
+                "label": "Button link"
+            },
+            {
                 "type": "checkbox",
                 "id": "show_button",
                 "label": "Show button",
@@ -196,6 +228,12 @@
                 "id": "show_currency",
                 "label": "Show currency",
                 "default": true
+            },
+            {
+                "type": "color_background",
+                "id": "background",
+                "label": "Background",
+                "default": "linear-gradient(102.87deg, #FCEED5 6.43%, #FCEED5 78.33%, #FFE7BA 104.24%)"
             },
             {
                 "type": "image_picker",

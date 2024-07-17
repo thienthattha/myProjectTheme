@@ -38,12 +38,12 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="img-with-text__img">
+            <div class="img-with-text__img img-with-text__img--{{ section.settings.photo_location }}">
                 {% if section.settings.img != blank %}
                     <img src="{{ section.settings.img |  image_url: width: auto }}" alt="">
                 {% endif %}
             </div>
-            {% render 'video',
+            {% render 'modal-video',
                 videoUrl: section.settings.video_url
                 videoId: section.settings.video_url.id
                 videoType: section.settings.video_url.type
@@ -99,6 +99,26 @@
                 "type": "image_picker",
                 "id": "img",
                 "label": "Image"
+            },
+            {
+                "type": "select",
+                "id": "photo_location",
+                "options": [
+                    {
+                    "value": "top",
+                    "label": "Top"
+                    },
+                    {
+                    "value": "center",
+                    "label": "Center"
+                    },
+                    {
+                        "value": "end",
+                        "label": "End"
+                    }
+                ],
+                "default": "end",
+                "label": "Photo location banner"
             },
             {
                 "type": "image_picker",

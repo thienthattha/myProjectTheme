@@ -1,0 +1,79 @@
+<div class="cart-item">
+    <div class="container">
+        <div class="cart-item__wrapper">
+            <div class="cart-heading">
+                <h2 class="cart-heading__title">Yout cart</h2>
+                <a href="{{ routes.all_products_collection_url }}" class="cart-heading__link">Continue shopping</a>
+            </div>
+            <form action="{{ routes.cart_url }}" class="cart-content" method="post" id="cart">
+                {% if cart != empty %}
+                    <table class="cart-content__table">
+                        <thead class="cart-content__head">
+                            <tr>
+                                <th>Product</th>
+                                <th></th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="cart-content__body">
+                            {% for item in cart.items %}
+                                <tr class="cart-content-item">
+                                    {% if item.image %}
+                                        <td class="cart-content-item__media">
+                                            <a href="{{ item.url }}" class="cart-content-item__media--link">
+                                                <div class="cart-content-item__media--image">
+                                                    <img src="{{ item.image |  img_url: width: 300 }}" alt="">
+                                                </div>
+                                            </a>
+                                        </td>
+                                    {% endif %}
+                                    <td class="cart-content-item__details">
+                                        <a href="{{ item.url }}" class="cart-content-item__details--link">{{ item.product.title | escape }}</a>
+                                        <div class="cart-content-item__details--original-price">
+                                            {{ item.original_price | money }}
+                                        </div>
+                                    </td>
+                                    <td class="cart-content-item__quantity">
+                                        <div class="cart-content-item__popover">
+                                            <button 
+                                                data-index="{{ item.index |  plus: 1 }}" 
+                                                data-quantity="{{ item.quantity }}"
+                                                class="button-icon cart-content-item__popover--icon cart-content-item__popover--minus"
+                                            >
+                                                -
+                                            </button>
+                                            <input 
+                                                type="number",
+                                                class="cart-content-item__popover--icon cart-content-item__popover--input"
+                                                value="{{ item.quantity }}"
+                                                data-index="{{ item.index | plus: 1 }}"
+                                            >
+                                            <button 
+                                                data-index="{{ item.index |  plus: 1 }}" 
+                                                data-quantity="{{ item.quantity }}"
+                                                class="button-icon cart-content-item__popover--icon cart-content-item__popover--plus"
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+                                        <div class="cart-content-item__button-remove">
+                                            <button data-index="{{ item.index |  plus: 1 }}" class="button-icon button-remove-item">{%  render 'icon-remove' %}</button>
+                                        </div>
+                                    </td>
+                                    <td class="cart-content-item__totals">
+                                        <div class="cart-content-item__totals--price--end">
+                                            <span>{{ item.original_line_price | money }}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p class="cart-content__empty">Cart is empty</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>

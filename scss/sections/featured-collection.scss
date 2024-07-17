@@ -5,20 +5,32 @@
       padding: 60px 0px;
     }
   
-    &__wrapper {
-      margin-left: -6px;
-      margin-right: -6px;
-
-      @include min-lg {
-        margin-left: -10px;
-        margin-right: -10px;
-      }
-    }
+    &__wrapper {}
   
     &__content {
       display: flex;
       flex-wrap: wrap;
       align-items: stretch;
+      margin: -6px;
+
+      @include min-lg {
+        margin: -10px;
+      }
+
+      .slick-track {
+        height: 100%;
+      }
+    }
+
+    &__links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 16px;
+      
+      @include min-lg {
+        display: none;
+      }
     }
   
     .product {
@@ -32,14 +44,27 @@
         position: relative;
         text-decoration: none;
         display: block;
-        padding: 8px 8px 52.5px 8px;
+        padding: 8px 8px 51px 8px;
         background: $white;
         box-shadow: 0px 4px 28px -2px #00000014;
         border-radius: 12px;
         min-height: 100%;
+
+        @include min-lg {
+          padding: 8px 8px 59px 8px;
+        }
+
+        &:hover {
+          .product__img {
+            img {
+              transform: scale(1.1);
+            }
+          }
+        }
       }
   
       &__img {
+        position: relative;
         margin-bottom: 8px;
         border-radius: 10px;
         overflow: hidden;
@@ -56,33 +81,46 @@
           height: 100%;
           object-fit: cover;
         }
-  
-        &:hover {
-          img {
-            transform: scale(1.1);
-          }
+
+        &--lable {
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          background: $gray-667;
+          color: $gray-FDF;
+          font-size: $font-size-smaller;
+          line-height: 18px;
+          border-radius: 10px;
+          padding: 1px 10px;
         }
       }
   
       &__info {
-        padding: 0px 4px;
+        padding: 4px;
         
         @include min-lg {
-          padding: 0px 8px;
+          padding: 8px;
         }
 
         &--title {
-          font-size: $font-size-base;
+          font-size: $font-size-small;
           font-weight: $font-weight-bold;
           color: $gray-001;
+          line-height: 20px;
+
+          @include min-lg {
+            font-size: $font-size-base;
+            line-height: 24px;
+          }
         }
   
         &--detail {
           padding-top: 4px;
           display: flex;
           flex-direction: column;
-  
+          
           @include min-lg {
+            align-items: center;
             flex-direction: row;
           }
           
@@ -94,19 +132,21 @@
               margin: 0px 4px 0px 4px;
             }
           }
+
           .item {
             display: flex;
             align-items: center;
             font-size: $font-size-smaller;
+            line-height: 18px;
             color: $gray-667;
   
             &__title {
-              font-weight: $font-weight-bold;
+              font-weight: $font-weight-medium;
             }
-  
+            
             &__value {
               padding-left: 4px;
-              font-weight: $font-weight-medium;
+              font-weight: $font-weight-bold;
   
               @include min-lg {
                 padding-left: 6px;
@@ -123,35 +163,56 @@
           }
           
           .price-sale {
-            font-size: $font-size-smaller;
+            font-size: $font-size-small;
             font-weight: $font-weight-medium;
+            line-height: 20px;
             padding-right : 4px;
             color: $gray-667;
             text-decoration: line-through;
+            line-height: 18px;
+
+            @include min-lg {
+              font-size: $font-size-smaller;
+              line-height: 18px;
+            }
           }
   
           .price-regular {
             color: $gray-001;
             font-weight: $font-weight-bold;
-            font-size: $font-size-small;
+            font-size: $font-size-base;
+            line-height: 24px;
+
+            @include min-lg {
+              font-size: $font-size-small;
+              line-height: 20px;
+            }
           }
         }
   
         &--button {
           position: absolute;
-          left: 8px;
-          right: 8px;
-          bottom: 8px;
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
           padding: 6px 10px;
           background: $yellow-FC;
           border-radius: 8px;
           padding: 5px 10px;
           color: $gray-002;
           font-weight: $font-weight-bold;
-          margin: 0px 4px;
           
           @include min-lg {
-            margin: 0px 8px;
+            left: 16px;
+            right: 16px;
+            bottom: 20px;
+          }
+
+          &:disabled {
+            background: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+            opacity: 1;
           }
         }
       }

@@ -1,0 +1,17 @@
+{
+    "layout": "layout1",
+    "sections": {
+      "cart-items": {
+        "type": "main-cart-items",
+        "settings": {}
+      },
+      "cart-footer": {
+        "type": "main-cart-footer",
+        "settings": {}
+      }
+    },
+    "order": [
+      "cart-items",
+      "cart-footer"
+    ]
+  }

@@ -1,0 +1,24 @@
+<div class="cart-footer">
+    <div class="container">
+        <div class="cart-footer__wrapper">
+            <div class="cart-footer__total">
+                <span class="cart-footer__total--title">Estimated total:</span>
+                <span class="cart-footer__total--price">{{ cart.total_price | money_with_currency }}</span>
+            </div>
+            <div class="cart-footer__checkout">
+                <button
+                    type="submit"
+                    id="checkout"
+                    name="checkout"
+                    {% if cart == empty %}
+                    disabled
+                    {% endif %}
+                    form="cart"
+                    class="button-link"
+                >
+                    Check out
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

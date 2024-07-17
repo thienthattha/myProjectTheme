@@ -14,37 +14,64 @@
   
     &__content {
       padding: 35px 0px 25px;
-  
+      
       @include min-lg {
+        padding: 80px 0px 205px;
         width: 50%;
       }
   
       &--title {
         font-size: 46px;
+        line-height: 60px;
         font-weight: $font-weight-extra-bold;
         color: $gray-002;
+
+        @include min-lg {
+          font-size: 60px;
+          line-height: 68px;
+        }
       }
       
-      &--subTitle {
+      &--sub-title {
         font-size: 28px;
+        line-height: 38px;
         font-weight: $font-weight-bold;
         color: $gray-002;
+
+        @include min-lg {
+          padding-top: 4px;
+          font-size: 46px;
+          line-height: 60px;
+        }
       }
   
       &--describe {
-        font-size: $font-size-small;
+        font-size: $font-size-smaller;
+        line-height: 18px;
         font-weight: $font-weight-medium;
         padding-top: 12px;
         color: $gray-242;
+
+        @include min-lg {
+          font-size: $font-size-base;
+          line-height: 24px;
+        }
       }
   
       &--link {
-        padding-top: 32px;
+        padding-top: 16px;
         display: flex;
+        flex-wrap: wrap;
   
         .banners-button {
+          margin-top: 16px;
+          margin-right: 16px;
           display: flex;
           align-items: center;
+
+          @include min-lg {
+            margin-right: 20px;
+          }
   
           &__name {
             padding-right: 8px;
@@ -60,18 +87,28 @@
         }
   
         .banners-link {
-          margin-left: 16px;
-          
-          @include min-lg {
-            margin-left: 20px;
-          }
+          margin-top: 16px;
         }
       }
     }
   
     &__img {
+      display: flex;
+
       @include min-lg {
         width: 50%;
+      }
+
+      &--end {
+        align-self: flex-end;
+      }
+
+      &--top {
+        align-self: flex-start;
+      }
+
+      &--center {
+        align-self: center;
       }
   
       img {

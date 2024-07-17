@@ -7,12 +7,23 @@
     <meta name="theme-color" content="">
     <title>{{ page_title }}</title>
 
+    <!-- Link Css -->
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <!-- Add the Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-    {%- liquid
-      assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
-      assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
-      assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+    {% liquid
+        assign body_font_thin = settings.type_body_font | font_modify: 'weight', '100'
+        assign body_font_extralight = settings.type_body_font | font_modify: 'weight', '200'
+        assign body_font_light = settings.type_body_font | font_modify: 'weight', '300'
+        assign body_font_regular = settings.type_body_font | font_modify: 'weight', '400'
+        assign body_font_medium = settings.type_body_font | font_modify: 'weight', '500'
+        assign body_font_semibold = settings.type_body_font | font_modify: 'weight', '600'
+        assign body_font_bold = settings.type_body_font | font_modify: 'weight', '700'
+        assign body_font_extrabold = settings.type_body_font | font_modify: 'weight', '800'
+        assign body_font_black = settings.type_body_font | font_modify: 'weight', '900'
     %}
 
     {{ content_for_header }}
@@ -23,9 +34,15 @@
 
     {%  style  %} 
         {{ settings.type_body_font | font_face: font_display: 'swap' }}
-        /* {{ body_font_bold | font_face: font_display: 'swap' }}
-        {{ body_font_italic | font_face: font_display: 'swap' }}
-        {{ body_font_bold_italic | font_face: font_display: 'swap' }} */
+        {{ body_font_thin | font_face: font_display: 'swap' }}
+        {{ body_font_extralight | font_face: font_display: 'swap' }}
+        {{ body_font_light | font_face: font_display: 'swap' }}
+        {{ body_font_regular | font_face: font_display: 'swap' }}
+        {{ body_font_medium | font_face: font_display: 'swap' }}
+        {{ body_font_semibold | font_face: font_display: 'swap' }}
+        {{ body_font_bold | font_face: font_display: 'swap' }}
+        {{ body_font_extrabold | font_face: font_display: 'swap' }}
+        {{ body_font_black | font_face: font_display: 'swap' }}
         {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
     :root {
@@ -60,12 +77,23 @@
     }
     {% endstyle %}
 
+    <!-- Link Js -->
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'modal-snippets.js' | asset_url }}" defer="defer"></script>    
+    <!-- Add the Slick JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 </head>
 <body>
     {% sections 'header-group' %}
     {{ content_for_layout }}
     {% sections 'footer-group' %}
     {% render 'back-to-top' %}
+
+    {% section 'predictive-search' %}
 </body>
 </html>

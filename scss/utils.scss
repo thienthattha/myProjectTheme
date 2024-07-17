@@ -22,6 +22,13 @@
   padding: 12px 28px;
   border-radius: var(--buttons-radius);
   font-size: $font-size-base;
+  font-family: var(--font-heading-family);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
   
   &--secondary {
     background: $blue-003;
@@ -31,6 +38,7 @@
 }
 
 .button-link {
+  font-family: var(--font-heading-family);
   background: $blue-003;
   text-decoration: none;
   color: $gray-FDF;
@@ -48,6 +56,7 @@
 }
 
 .button-line {
+  font-family: var(--font-heading-family);
   background: none;
   text-decoration: none;
   border: 1px solid $blue-003;

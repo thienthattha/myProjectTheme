@@ -2,7 +2,7 @@
     <div class="container">
         {% if section.blocks.size > 0 %}
             {% render 'header-section',
-                description: section.settings.description,
+                subHeading: section.settings.sub_heading,
                 heading: section.settings.heading,
                 textButton: section.settings.text_button,
                 linkButton: section.settings.link_button | default: "#",
@@ -31,30 +31,29 @@
     "disabled_on": {
         "groups": ["header", "footer"]
     },
-    "max_blocks": 7,
     "settings": [
         {
-          "type": "inline_richtext",
-          "id": "description",
-          "default": "Proud to be part of",
-          "label": "Description"
+            "type": "inline_richtext",
+            "id": "sub_heading",
+            "default": "Sub heading ...",
+            "label": "Sub heading"
         },
         {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "Pet Sellers",
-          "label": "Heading"
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "Heading ...",
+            "label": "Heading"
         },
         {
-          "type": "text",
-          "id": "text_button",
-          "default": "View all our sellers",
-          "label": "Text button"
+            "type": "text",
+            "id": "text_button",
+            "default": "Text button ...",
+            "label": "Text button"
         },
         {
-          "type": "url",
-          "id": "link_button",
-          "label": "Link button"
+            "type": "url",
+            "id": "link_button",
+            "label": "Link button"
         },
         {
             "type": "range",
